@@ -13,12 +13,12 @@
   confinement: devmode # use 'strict' once you have the right plugs and slots
 
   apps:
-    heethings-demo:
+    warmecom-demo:
       command: pi01
       extensions: [flutter-stable]
   
   parts:
-    heethings-demo:
+    warmecom-demo:
       source: .
       plugin: flutter
       flutter-target: lib/main.dart
