@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pi01/app/core/constants/data.dart';
+import 'package:pi01/app/core/constants/enums.dart';
 import 'package:pi01/app/data/model/boiler.dart';
 import 'package:pi01/app/data/model/weather.dart';
 
@@ -16,5 +17,12 @@ class BoilerController extends GetxController {
   void setWeather(Weather w) {
     _weather.value = w;
     update();
+  }
+
+  void togglePower() {
+    Boiler b = boiler;
+    b.boilerStatus =
+        b.boilerStatus == BoilerStatus.off ? BoilerStatus.on : BoilerStatus.off;
+    setBoiler(b);
   }
 }
