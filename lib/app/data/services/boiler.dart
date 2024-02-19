@@ -25,4 +25,43 @@ class BoilerController extends GetxController {
         b.boilerStatus == BoilerStatus.off ? BoilerStatus.on : BoilerStatus.off;
     setBoiler(b);
   }
+
+  void setMode(BoilerMode m) {
+    Boiler b = boiler;
+    b.boilerMode = m;
+    setBoiler(b);
+  }
+
+  final RxBool _screenSaverActive = false.obs;
+  bool get screenSaverActive => _screenSaverActive.value;
+
+  void increaseBoilerTemperature() {
+    Boiler b = boiler;
+    b.boilerTemperature = b.boilerTemperature + 10;
+    setBoiler(b);
+  }
+
+  void decreaseBoilerTemperature() {
+    Boiler b = boiler;
+    b.boilerTemperature = b.boilerTemperature - 10;
+    setBoiler(b);
+  }
+
+  void increaseWaterTemperature() {
+    Boiler b = boiler;
+    b.domesticWaterTemperature = b.domesticWaterTemperature + 10;
+    setBoiler(b);
+  }
+
+  void decreaseWaterTemperature() {
+    Boiler b = boiler;
+    b.domesticWaterTemperature = b.domesticWaterTemperature - 10;
+    setBoiler(b);
+  }
+
+  void setRoomTemperature(int t) {
+    Boiler b = boiler;
+    b.desiredRoomTemperature = t;
+    setBoiler(b);
+  }
 }

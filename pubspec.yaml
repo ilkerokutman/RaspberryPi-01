@@ -11,7 +11,8 @@ dependencies:
     sdk: flutter
   flutter_svg: ^2.0.9
   get: ^4.6.6
-  window_manager: ^0.3.8
+  # page_transition: ^2.1.0
+  # window_manager: ^0.3.8
 
 dev_dependencies:
   flutter_test:
@@ -22,4 +23,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    # - assets/fonts/
+  # fonts:
+  #   = family: SF Pro Display
+  #     fonts:
+  #       - asset: assets/fonts/SanFrancisco-Regular.ttf
     
+# flutter clean && flutter pub get && flutterpi_tool build --cpu=pi4 && rsync -a --info=progress2 ./build/flutter_assets/ pi@192.168.1.125:/home/pi/my_apps_flutter_assets
+
+ 
