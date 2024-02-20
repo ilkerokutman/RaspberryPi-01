@@ -1,8 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:pi01/app/core/constants/enums.dart';
 import 'package:pi01/app/data/model/boiler.dart';
-import 'package:pi01/app/data/model/weather.dart';
+import 'package:pi01/app/ui/screens/home.dart';
+import 'package:pi01/app/ui/screens/weather.dart';
+import 'package:pi01/app/ui/screens/weekly.dart';
 
 class UiData {
+  static List<Widget> pagerTabs = [
+    const WeeklyScreen(),
+    const HomeScreen(),
+    const WeatherScreen(),
+  ];
+
   static List<String> menuTitles = [
     'Summer Mode',
     'Winter Mode',
@@ -33,26 +42,21 @@ class UiData {
     't05_h.png',
   ];
 
-  static Weather weather = Weather(
-    currentTemperature: 110,
-    minTemperature: 90,
-    maxTemperature: 140,
-    humidity: 90,
-    windSpeed: 41,
-    windDirection: 90,
-    weatherStatus: WeatherStatus.rain,
-  );
-
   static Boiler boiler = Boiler(
-    boilerStatus: BoilerStatus.on,
-    boilerMode: BoilerMode.off,
+    activeTab: ActiveTab.boiler,
     flameStatus: FlameStatus.on,
-    boilerTemperature: 650,
-    domesticWaterTemperature: 450,
-    currentRoom1Temperature: 192,
-    currentRoom2Temperature: 208,
-    currentRoom3Temperature: 211,
-    desiredRoomTemperature: 220,
-    pressure: 11,
+    mode: BoilerMode.winter,
+    currentBoilerWater: 587,
+    desiredBoilerWater: 600,
+    currentHotWater: 463,
+    desiredHotWater: 47,
+    desiredRoomTemperature: 240,
+    currentRoom1Temperature: 234,
+    currentRoom2Temperature: 217,
+    currentRoom3Temperature: 237,
+    pressure: 18,
+    room1Active: true,
+    room2Active: true,
+    room3Active: true,
   );
 }

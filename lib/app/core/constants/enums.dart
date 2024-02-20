@@ -1,29 +1,15 @@
-enum BoilerStatus {
-  off,
-  on,
-}
 
 enum BoilerMode {
-  off,
   summer,
   winter,
+  eco,
+  weekly,
+  custom,
 }
 
 enum FlameStatus {
   off,
   on,
-}
-
-enum WeatherStatus {
-  clearSky,
-  fewClouds,
-  scatteredClouds,
-  brokenClouds,
-  showerRain,
-  rain,
-  thunderStorm,
-  snow,
-  mist,
 }
 
 enum ValueSuffix {
@@ -32,7 +18,7 @@ enum ValueSuffix {
   bar,
 }
 
-enum DegreeControlTabItem {
+enum ActiveTab {
   setValue,
   boiler,
   hotWater,

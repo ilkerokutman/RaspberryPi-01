@@ -6,7 +6,7 @@ import 'package:pi01/app/core/constants/enums.dart';
 class CU {
   static String displayValue(int t,
       {int presicion = 1, ValueSuffix suffix = ValueSuffix.celcius}) {
-    return "${(t / 10).toStringAsFixed(presicion)}${suffix == ValueSuffix.bar ? ' bar' : suffix == ValueSuffix.celcius ? ' °C' : ''}";
+    return "${(t / 10).toStringAsFixed(presicion)}${suffix == ValueSuffix.bar ? ' bar' : suffix == ValueSuffix.celcius ? '°' : ''}";
   }
 
   static double toLogical(double size) {

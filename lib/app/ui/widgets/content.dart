@@ -5,10 +5,8 @@ class CircleContentWidget extends StatelessWidget {
   const CircleContentWidget({
     super.key,
     this.child,
-    this.color,
   });
   final Widget? child;
-  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +16,9 @@ class CircleContentWidget extends StatelessWidget {
         child: Container(
           width: UiDimens.screenSize,
           height: UiDimens.screenSize,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
-            color: color ?? Theme.of(context).canvasColor,
+            color: Colors.black,
           ),
           child: child,
         ),

@@ -1,10 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:pi01/app/core/constants/enums.dart';
-import 'package:pi01/app/core/utils/common.dart';
-import 'package:pi01/app/ui/screens/home.dart';
-import 'package:pi01/app/ui/screens/weather.dart';
-import 'package:pi01/app/ui/screens/weekly.dart';
+import 'package:get/get.dart';
+import 'package:pi01/app/core/constants/data.dart';
+import 'package:pi01/app/data/routes/routes.dart';
+import 'package:pi01/app/data/services/boiler.dart';
 import 'package:pi01/app/ui/widgets/content.dart';
 import 'package:pi01/app/ui/widgets/demo.dart';
 import 'package:pi01/app/ui/widgets/page_indicator.dart';
@@ -19,55 +20,57 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   late PageController _pageViewController;
   late TabController _tabController;
-  DegreeControlTabItem activeDegreeControlTab = DegreeControlTabItem.setValue;
+  late Timer _timer;
   int _currentPageIndex = 1;
-  bool hasError = false;
-  int currentModeIndex = 1;
+  final BoilerController boilerController = Get.find();
 
   @override
   void initState() {
     super.initState();
-    _pageViewController = PageController(initialPage: 1);
-    _tabController = TabController(length: 3, vsync: this, initialIndex: 1);
+    _pageViewController = PageController(
+      initialPage: _currentPageIndex,
+    );
+    _tabController = TabController(
+      length: 3,
+      vsync: this,
+      initialIndex: _currentPageIndex,
+    );
   }
 
   @override
   void dispose() {
-    super.dispose();
     _pageViewController.dispose();
     _tabController.dispose();
+    _timer.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return CircleContentWidget(
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          PageView(
-            controller: _pageViewController,
-            onPageChanged: _handlePageViewChanged,
-            physics: BouncingScrollPhysics(),
-            children: [
-              WeeklyScreen(),
-              HomeScreen(
-                activeItem: activeDegreeControlTab,
-                degreeTabCallback: onDegreeControlTabClicked,
-                hasError: hasError,
-                onModeSelected: onModeSelected,
-                selectedMode: currentModeIndex,
-              ),
-              WeatherScreen(),
-            ],
-          ),
-          PageIndicator(
-            tabController: _tabController,
-            currentPageIndex: _currentPageIndex,
-            onUpdateCurrentPageIndex: _updateCurrentPageIndex,
-            isOnDesktopAndWeb: _isOnDesktopAndWeb,
-          ),
-          DemoLabelWidget(),
-        ],
+    return GestureDetector(
+      onTap: () {
+        boilerController.cancelTimer();
+        boilerController.startTimer();
+      },
+      child: CircleContentWidget(
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            PageView(
+              controller: _pageViewController,
+              onPageChanged: _handlePageViewChanged,
+              physics: const BouncingScrollPhysics(),
+              children: UiData.pagerTabs,
+            ),
+            PageIndicator(
+              tabController: _tabController,
+              currentPageIndex: _currentPageIndex,
+              onUpdateCurrentPageIndex: _updateCurrentPageIndex,
+              isOnDesktopAndWeb: _isOnDesktopAndWeb,
+            ),
+            const DemoLabelWidget(),
+          ],
+        ),
       ),
     );
   }
@@ -83,6 +86,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   }
 
   void _updateCurrentPageIndex(int index) {
+    boilerController.cancelTimer();
+    boilerController.startTimer();
     _tabController.index = index;
     _pageViewController.animateToPage(
       index,
@@ -105,22 +110,5 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       case TargetPlatform.fuchsia:
         return false;
     }
-  }
-
-  void onDegreeControlTabClicked(DegreeControlTabItem item) {
-    setState(() {
-      activeDegreeControlTab = item;
-    });
-  }
-
-  void onModeSelected(int i) {
-    setState(() {
-      currentModeIndex = i;
-      if (i == 0 || i == 3) {
-        activeDegreeControlTab = DegreeControlTabItem.hotWater;
-      } else if (i == 1 || i == 2) {
-        activeDegreeControlTab = DegreeControlTabItem.setValue;
-      }
-    });
   }
 }

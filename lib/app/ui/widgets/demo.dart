@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:pi01/app/core/utils/common.dart';
 
 class DemoLabelWidget extends StatelessWidget {
@@ -13,7 +12,7 @@ class DemoLabelWidget extends StatelessWidget {
       margin: EdgeInsets.only(bottom: CU.toLogical(13)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(CU.toLogical(15)),
-        color: Color.fromRGBO(209, 0, 47, 1),
+        color: const Color.fromRGBO(209, 0, 47, 1),
       ),
       child: Center(
         child: Text(
