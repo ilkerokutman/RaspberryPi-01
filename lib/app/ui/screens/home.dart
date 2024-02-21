@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
     return Stack(
       children: [
         CU.image('bg_home_on.png', w: 720, h: 720),
-        const DateTimeDisplayWidget(),
+        const DateTimeDisplayWidget(hasLink: true),
         const MiniWeatherWidget(),
         const DegreeTabsWidget(),
         const RoomInfoWidget(),

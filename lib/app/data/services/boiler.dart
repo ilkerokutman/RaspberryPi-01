@@ -8,20 +8,26 @@ import 'package:pi01/app/data/routes/routes.dart';
 
 class BoilerController extends GetxController {
   late Timer timer;
+  late Timer dateTimer;
 
   @override
   void onReady() {
     super.onReady();
+    dateTimer = Timer.periodic(const Duration(seconds: 1), _updateDateTimer);
     startTimer();
   }
+
+  final Rx<DateTime> _dateNow =
+      DateTime.now().add(const Duration(hours: 1)).obs;
+  DateTime get dateNow => _dateNow.value;
 
   final Rx<Boiler> _boiler = UiData.boiler.obs;
   Boiler get boiler => _boiler.value;
   void setBoiler(Boiler b) {
-    _boiler.value = b;
-    update();
     cancelTimer();
     startTimer();
+    _boiler.value = b;
+    update();
   }
 
   void onMinusPressed() {
@@ -84,8 +90,12 @@ class BoilerController extends GetxController {
     Boiler b = boiler;
     b.mode = m;
     setBoiler(b);
-    if (m == BoilerMode.summer || m == BoilerMode.weekly) {
+    if (m == BoilerMode.summer ||
+        m == BoilerMode.weekly ||
+        m == BoilerMode.custom) {
       setActiveTab(ActiveTab.hotWater);
+    } else {
+      setActiveTab(ActiveTab.setValue);
     }
   }
 
@@ -112,14 +122,17 @@ class BoilerController extends GetxController {
   }
 
   void startTimer() async {
-    const duration = Duration(seconds: 20);
-
     timer = Timer(
-      duration,
+      UiData.screenSaverDuration,
       () async {
         await Get.toNamed(Routes.saver);
         startTimer();
       },
     );
+  }
+
+  void _updateDateTimer(Timer t) {
+    _dateNow.value = DateTime.now().add(const Duration(hours: 1));
+    update();
   }
 }

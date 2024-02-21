@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pi01/app/core/constants/data.dart';
 import 'package:pi01/app/core/constants/enums.dart';
 import 'package:pi01/app/core/utils/common.dart';
 import 'package:pi01/app/data/services/boiler.dart';
@@ -22,11 +23,11 @@ class SaverRoomTemperatureWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 saverRoomDisplayWidget(
-                    'LIVING ROOM', bc.boiler.currentRoom1Temperature),
+                    UiData.roomNames[0], bc.boiler.currentRoom1Temperature),
                 saverRoomDisplayWidget(
-                    'BEDROOM', bc.boiler.currentRoom2Temperature),
+                    UiData.roomNames[1], bc.boiler.currentRoom2Temperature),
                 saverRoomDisplayWidget(
-                    'KITCHEN', bc.boiler.currentRoom3Temperature),
+                    UiData.roomNames[2], bc.boiler.currentRoom3Temperature),
               ],
             ),
           ),
@@ -44,9 +45,10 @@ class SaverRoomTemperatureWidget extends StatelessWidget {
           name,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: CU.toLogical(12),
+            fontFamily: 'SF Pro Display',
+            fontSize: CU.toLogical(14),
             fontWeight: FontWeight.w100,
-            color: Colors.white.withOpacity(0.6),
+            color: Colors.white.withOpacity(0.4),
           ),
         ),
         Text(
@@ -57,9 +59,10 @@ class SaverRoomTemperatureWidget extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
           style: TextStyle(
+            fontFamily: 'SF Pro Display',
             fontSize: CU.toLogical(26),
             fontWeight: FontWeight.w300,
-            color: Colors.white.withOpacity(0.86),
+            color: Colors.white.withOpacity(0.4),
           ),
         ),
       ],

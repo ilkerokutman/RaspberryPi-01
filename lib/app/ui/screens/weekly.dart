@@ -9,8 +9,8 @@ class WeeklyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CU.image('draft_weekly.png', w: 720, h: 720),
-        DateTimeDisplayWidget(),
+        CU.image('bg_weekly.png', w: 720, h: 720),
+        const DateTimeDisplayWidget(),
       ],
     );
   }

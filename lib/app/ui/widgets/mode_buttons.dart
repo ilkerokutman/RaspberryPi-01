@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:pi01/app/core/constants/data.dart';
 import 'package:pi01/app/core/constants/enums.dart';
 import 'package:pi01/app/core/utils/common.dart';
-import 'package:pi01/app/data/routes/routes.dart';
 import 'package:pi01/app/data/services/boiler.dart';
 
 class ModeButtonsWidget extends StatelessWidget {
@@ -36,13 +35,7 @@ class ModeButtonsWidget extends StatelessWidget {
                         for (var item in BoilerMode.values)
                           IconButton(
                             onPressed: () async {
-                              if (item == BoilerMode.custom) {
-                                bc.cancelTimer();
-                                await Get.toNamed(Routes.error);
-                                bc.startTimer();
-                              } else {
-                                bc.setMode(item);
-                              }
+                              bc.setMode(item);
                             },
                             isSelected: bc.boiler.mode == item,
                             icon: CU.image(
@@ -84,7 +77,8 @@ class ModeButtonsWidget extends StatelessWidget {
                               child: Text(
                                 UiData.menuTitles[bc.boiler.mode.index],
                                 style: TextStyle(
-                                  fontSize: CU.toLogical(10),
+                                  fontFamily: 'SF Pro Display',
+                                  fontSize: CU.toLogical(14),
                                   fontWeight: FontWeight.w300,
                                   height: 1,
                                 ),

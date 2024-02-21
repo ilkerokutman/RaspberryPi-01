@@ -13,7 +13,11 @@ class MainApp extends StatelessWidget {
       initialRoute: Routes.home,
       initialBinding: AppBindings(),
       getPages: getPages,
-      theme: ThemeData(),
+      theme: ThemeData(
+        fontFamily: 'SF Pro Display',
+        textTheme:
+            Theme.of(context).textTheme.apply(fontFamily: 'SF Pro Display'),
+      ),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.dark,
     );

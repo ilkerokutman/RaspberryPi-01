@@ -49,7 +49,7 @@ class Boiler {
     for (int i = 0; i < temps.length; i++) {
       total += temps[i];
     }
-    int avg = (total / temps.length).toInt();
+    int avg = total ~/ temps.length;
     return avg;
   }
 }

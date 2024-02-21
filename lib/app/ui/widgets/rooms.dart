@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pi01/app/core/constants/data.dart';
 import 'package:pi01/app/core/utils/common.dart';
 import 'package:pi01/app/data/services/boiler.dart';
 
@@ -23,15 +24,15 @@ class RoomInfoWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Opacity(opacity: 0.24, child: Icon(Icons.expand_less)),
-                room('LIVING ROOM', bc.boiler.currentRoom1Temperature,
+                room(UiData.roomNames[0], bc.boiler.currentRoom1Temperature,
                     bc.boiler.room1Active, () {
                   bc.onRoomClicked(1);
                 }),
-                room('BEDROOM', bc.boiler.currentRoom2Temperature,
+                room(UiData.roomNames[1], bc.boiler.currentRoom2Temperature,
                     bc.boiler.room2Active, () {
                   bc.onRoomClicked(2);
                 }),
-                room('KITCHEN', bc.boiler.currentRoom3Temperature,
+                room(UiData.roomNames[2], bc.boiler.currentRoom3Temperature,
                     bc.boiler.room3Active, () {
                   bc.onRoomClicked(3);
                 }),
@@ -65,6 +66,7 @@ class RoomInfoWidget extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
+                    fontFamily: 'SF Pro Display',
                     fontSize: CU.toLogical(12),
                     fontWeight: FontWeight.w100,
                     color: Colors.white.withOpacity(0.5),

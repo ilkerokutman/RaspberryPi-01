@@ -29,7 +29,7 @@ class CenterDisplayWidget extends StatelessWidget {
                     child: CU.image('radial.png', w: 277, h: 248),
                   ),
                 ),
-                Center(
+                const Center(
                   child: MaskWidget(),
                 ),
                 Center(
@@ -47,9 +47,11 @@ class CenterDisplayWidget extends StatelessWidget {
                                   : 'Selected Room\nTemperature set to',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: CU.toLogical(12),
+                            fontFamily: 'SF Pro Display',
+                            fontSize: CU.toLogical(14),
                             fontWeight: FontWeight.w100,
                             color: Colors.white,
+                            height: 1.1,
                           ),
                         ),
                         Text(
@@ -65,6 +67,7 @@ class CenterDisplayWidget extends StatelessWidget {
                           ),
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                            fontFamily: 'SF Pro Display',
                             fontSize: CU.toLogical(65),
                             fontWeight: FontWeight.w400,
                             color: Colors.white,
@@ -84,9 +87,11 @@ class CenterDisplayWidget extends StatelessWidget {
                           )}",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: CU.toLogical(13),
+                            fontFamily: 'SF Pro Display',
+                            fontSize: CU.toLogical(14),
                             fontWeight: FontWeight.w100,
                             color: Colors.white,
+                            height: 1,
                           ),
                         ),
                         SizedBox(

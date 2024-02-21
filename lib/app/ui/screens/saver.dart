@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pi01/app/core/utils/common.dart';
 import 'package:pi01/app/ui/widgets/content.dart';
-import 'package:pi01/app/ui/widgets/date.dart';
 import 'package:pi01/app/ui/widgets/saver_date.dart';
 import 'package:pi01/app/ui/widgets/saver_flame.dart';
 import 'package:pi01/app/ui/widgets/saver_mode.dart';
@@ -15,7 +13,7 @@ class ScreenSaverScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Get.back(),
-      child: CircleContentWidget(
+      child: const CircleContentWidget(
         child: Stack(
           children: [
             // Center(

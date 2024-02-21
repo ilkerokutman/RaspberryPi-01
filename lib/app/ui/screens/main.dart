@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pi01/app/core/constants/data.dart';
-import 'package:pi01/app/data/routes/routes.dart';
 import 'package:pi01/app/data/services/boiler.dart';
 import 'package:pi01/app/ui/widgets/content.dart';
 import 'package:pi01/app/ui/widgets/demo.dart';

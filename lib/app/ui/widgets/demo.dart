@@ -18,6 +18,7 @@ class DemoLabelWidget extends StatelessWidget {
         child: Text(
           'DEMO MODE',
           style: TextStyle(
+            fontFamily: 'SF Pro Display',
             fontSize: CU.toLogical(10),
             fontWeight: FontWeight.w300,
             height: 1,

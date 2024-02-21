@@ -6,10 +6,18 @@ import 'package:pi01/app/ui/screens/weather.dart';
 import 'package:pi01/app/ui/screens/weekly.dart';
 
 class UiData {
+  static const screenSaverDuration = Duration(seconds: 120);
+
   static List<Widget> pagerTabs = [
     const WeeklyScreen(),
     const HomeScreen(),
     const WeatherScreen(),
+  ];
+
+  static List<String> roomNames = [
+    'LIVING ROOM',
+    'BEDROOM',
+    'KITCHEN',
   ];
 
   static List<String> menuTitles = [
@@ -49,7 +57,7 @@ class UiData {
     currentBoilerWater: 587,
     desiredBoilerWater: 600,
     currentHotWater: 463,
-    desiredHotWater: 47,
+    desiredHotWater: 470,
     desiredRoomTemperature: 240,
     currentRoom1Temperature: 234,
     currentRoom2Temperature: 217,

@@ -10,7 +10,7 @@ class WeatherScreen extends StatelessWidget {
     return Stack(
       children: [
         CU.image('draft_weather.png', w: 720, h: 720),
-        DateTimeDisplayWidget(),
+        const DateTimeDisplayWidget(),
       ],
     );
   }

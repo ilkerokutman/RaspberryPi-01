@@ -42,7 +42,7 @@ class DegreeTabItemWidget extends StatelessWidget {
           break;
         case ActiveTab.hotWater:
           isSelected = bc.boiler.activeTab == ActiveTab.hotWater;
-          disabled = bc.boiler.mode == BoilerMode.custom;
+          disabled = false;
           labelText = 'hot water';
           titleText = CU.displayValue(
             bc.boiler.currentHotWater,
@@ -56,7 +56,7 @@ class DegreeTabItemWidget extends StatelessWidget {
           disabled = bc.boiler.mode == BoilerMode.summer ||
               bc.boiler.mode == BoilerMode.weekly ||
               bc.boiler.mode == BoilerMode.custom;
-          labelText = 'set to';
+          labelText = 'average';
           titleText = CU.displayValue(
             bc.boiler.averageRoomTemperature,
             presicion: 1,
@@ -110,6 +110,7 @@ class DegreeTabItemWidget extends StatelessWidget {
                           child: Text(
                             labelText,
                             style: TextStyle(
+                              fontFamily: 'SF Pro Display',
                               fontSize: CU.toLogical(14),
                               fontWeight: FontWeight.w100,
                               height: 1,
@@ -119,6 +120,7 @@ class DegreeTabItemWidget extends StatelessWidget {
                         Text(
                           titleText,
                           style: TextStyle(
+                            fontFamily: 'SF Pro Display',
                             fontSize: CU.toLogical(22),
                             fontWeight: FontWeight.w300,
                             height: 1,

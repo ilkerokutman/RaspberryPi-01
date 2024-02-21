@@ -23,11 +23,28 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    # - assets/fonts/
-  # fonts:
-  #   = family: SF Pro Display
-  #     fonts:
-  #       - asset: assets/fonts/SanFrancisco-Regular.ttf
+    - assets/fonts/
+  fonts:
+    - family: SF Pro Display
+      fonts:
+        - asset: assets/fonts/SF-Pro-Display-Black.ttf
+          weight: 900
+        - asset: assets/fonts/SF-Pro-Display-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/SF-Pro-Display-Heavy.ttf
+          weight: 800
+        - asset: assets/fonts/SF-Pro-Display-Light.ttf
+          weight: 300
+        - asset: assets/fonts/SF-Pro-Display-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/SF-Pro-Display-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/SF-Pro-Display-Semibold.ttf
+          weight: 600
+        - asset: assets/fonts/SF-Pro-Display-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/SF-Pro-Display-Ultralight.ttf
+          weight: 200
     
 # flutter clean && flutter pub get && flutterpi_tool build --cpu=pi4 && rsync -a --info=progress2 ./build/flutter_assets/ pi@192.168.1.125:/home/pi/my_apps_flutter_assets
 

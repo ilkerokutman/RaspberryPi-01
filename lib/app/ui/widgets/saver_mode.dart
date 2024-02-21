@@ -18,7 +18,7 @@ class ScreenSaverMode extends StatelessWidget {
               bottom: CU.toLogical(194),
             ),
             child: Opacity(
-              opacity: 0.86,
+              opacity: 0.4,
               child: CU.image(
                 UiData.menuAssetsActive[bc.boiler.mode.index],
               ),

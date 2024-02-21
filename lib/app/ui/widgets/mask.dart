@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pi01/app/core/constants/enums.dart';
 import 'package:pi01/app/core/utils/common.dart';
 import 'package:pi01/app/data/services/boiler.dart';
 
@@ -11,41 +12,72 @@ class MaskWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BoilerController>(builder: (bc) {
-      double rotateAngle = 70; //clockwise radian
-      double drawAngle = 82; // degree
-      return Container(
-        // color: Colors.yellow.withOpacity(0.3),
-        width: CU.toLogical(320),
-        height: CU.toLogical(320),
-        child: Transform.rotate(
-          angle: rotateAngle,
-          child: CustomPaint(
-            painter: RadianPainter(
-              length: CU.toLogical(180),
-              angleInRadians: drawAngle * pi / 180,
-              color: Colors.black.withOpacity(0.7),
-              strokeWidth: CU.toLogical(30),
+      int min = 0;
+      int max = 100;
+      int setVal = 50;
+      switch (bc.boiler.activeTab) {
+        case ActiveTab.setValue:
+          min = 150;
+          max = 350;
+          setVal = bc.boiler.desiredRoomTemperature;
+          break;
+        case ActiveTab.boiler:
+          min = 250;
+          max = 850;
+          setVal = bc.boiler.desiredBoilerWater;
+          break;
+        case ActiveTab.hotWater:
+          min = 350;
+          max = 650;
+          setVal = bc.boiler.desiredHotWater;
+          break;
+      }
+      int l = max - min;
+      int v = setVal - min;
+
+      double percentage = ((v * 100) / l) / 100;
+
+      double angleInDegrees = ((1 - percentage) * 287 / 100) * 100;
+
+      double startAngle = 2.2;
+      return SizedBox(
+        width: CU.toLogical(277),
+        height: CU.toLogical(277),
+        child: Stack(
+          children: [
+            Transform.flip(
+              flipX: true,
+              child: CustomPaint(
+                painter: SliderPainter(
+                  startAngle: startAngle,
+                  radius: CU.toLogical(125),
+                  angleInDegrees: angleInDegrees,
+                  color: Colors.black.withOpacity(0.7),
+                  strokeWidth: CU.toLogical(28),
+                ),
+                child: Container(alignment: Alignment.center),
+              ),
             ),
-            size: Size.infinite,
-          ),
+          ],
         ),
       );
     });
   }
 }
 
-class RadianPainter extends CustomPainter {
-  final double length;
-  final double angleInRadians;
+class SliderPainter extends CustomPainter {
+  final double radius;
+  final double angleInDegrees;
   final Color color;
   final double strokeWidth;
+  final double startAngle;
 
-  RadianPainter({
-    required this.length,
-    required this.angleInRadians,
-    required this.color,
-    required this.strokeWidth,
-  });
+  SliderPainter(
+      {required this.radius,
+      required this.angleInDegrees,
+      required this.color,
+      required this.strokeWidth,
+      required this.startAngle});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -54,15 +86,16 @@ class RadianPainter extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke;
 
-    double radius = length / angleInRadians;
+    double angleInRadians = angleInDegrees * pi / 180;
     Offset center = Offset(size.width / 2, size.height / 2);
 
     canvas.drawArc(
-        Rect.fromCircle(center: center, radius: radius),
-        -pi / 2, // Starting angle in radians (90 degrees)
-        angleInRadians,
-        false,
-        paint);
+      Rect.fromCircle(center: center, radius: radius),
+      startAngle,
+      angleInRadians,
+      false,
+      paint,
+    );
   }
 
   @override

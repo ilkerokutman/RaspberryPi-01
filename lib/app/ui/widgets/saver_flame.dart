@@ -22,7 +22,7 @@ class ScreenSaverFlame extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Opacity(
-                  opacity: 0.86,
+                  opacity: 0.4,
                   child: CU.image(
                     'screen_saver_flame.png',
                     w: 93,
@@ -39,7 +39,7 @@ class ScreenSaverFlame extends StatelessWidget {
                   style: TextStyle(
                     fontSize: CU.toLogical(51),
                     fontWeight: FontWeight.w300,
-                    color: Colors.white.withOpacity(0.87),
+                    color: Colors.white.withOpacity(0.4),
                     height: 1.1,
                   ),
                 ),
