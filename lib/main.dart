@@ -2,9 +2,26 @@ import 'dart:io';
 
 import 'package:dart_periphery/dart_periphery.dart';
 import 'package:flutter/material.dart';
+import 'package:window_manager/window_manager.dart';
 
-void main() {
+void main() async {
   runApp(const MainApp());
+
+  // apply window options
+  await windowManager.ensureInitialized();
+
+  WindowOptions windowOptions = const WindowOptions(
+    size: Size(800, 480),
+    // center: true,
+    backgroundColor: Colors.black,
+    skipTaskbar: false,
+    titleBarStyle: TitleBarStyle.hidden,
+    windowButtonVisibility: true,
+  );
+  windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.show();
+    await windowManager.focus();
+  });
 }
 
 class MainApp extends StatelessWidget {
@@ -52,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('GPIO'),
+        title: const Text('GPIO'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -64,14 +81,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 gpio.write(true);
                 gpio2.write(true);
                 gpio3.write(true);
-                sleep(Duration(milliseconds: 200));
+                sleep(const Duration(milliseconds: 200));
                 gpio.write(false);
                 gpio2.write(false);
                 gpio3.write(false);
-                sleep(Duration(milliseconds: 200));
+                sleep(const Duration(milliseconds: 200));
               }
             },
-            child: Text('test'),
+            child: const Text('test'),
           ),
         ],
       ),
